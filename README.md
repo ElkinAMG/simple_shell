@@ -75,6 +75,6 @@ OLDPWD=/home/vagrant
 - Yoyman Castellar - [Github](https://github.com/ymcastellar) , [Twitter](https://twitter.com/castellaryoyman).
 - Elkin Mejia - [Github](https://github.com/ElkinAMG) , [Twitter](https://twitter.com/ElkinAMG).
 
-![](img/jim carrey.gif)
+![](img/jim.gif)
 
 ###  End of README.md
