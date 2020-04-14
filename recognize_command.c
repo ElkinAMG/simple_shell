@@ -45,6 +45,7 @@ int recognize_command(char *command, int counter, char *shell_name)
 			_perror(shell_name, av[0], "has occured an error\n", counter);
 		if (status == 126)
 			check_flag(2, shell_name, av[0], counter);
+		return (127);
 	}
 
 	return (0);

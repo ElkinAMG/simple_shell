@@ -27,11 +27,12 @@ void signalHandler(int value)
 
 int main(int ac, char **av)
 {
-
 	char *command = NULL;
 	size_t size = 0;
 	ssize_t bytes_read = 0;
 	int counter = 1;
+	int flag = 0;
+	int ext = 0;
 
 	signal(SIGINT, signalHandler);
 
@@ -43,27 +44,27 @@ int main(int ac, char **av)
 
 	while (1)
 	{
-
 		if ((isatty(STDIN_FILENO)) == 1)
 			write(STDOUT_FILENO, "$ ", 2);
 
 		bytes_read = getline(&command, &size, stdin);
-		if (bytes_read != EOF)
+		if (bytes_read == EOF)
+			break;
+
+		fflush(stdout); /* Frees garbage from the buffer. */
+		flag = recognize_command(command, counter, av[0]);
+		if (flag != 0)
 		{
-			fflush(stdout); /* Frees garbage from the buffer. */
-			if (recognize_command(command, counter, av[0]) != 0)
-			{
-				free(command);
-				exit(0);
-			}
-			bytes_read = 0;
-			counter++;
+			if (flag == 1)
+				free(command), exit(ext);
+			else
+				ext = flag;
 		}
 		else
-			break;
+			ext = 0;
+		bytes_read = 0;
+		counter++;
 	}
-
 	free(command);
 	return (0);
-
 }
