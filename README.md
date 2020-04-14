@@ -16,6 +16,7 @@
 | shell.h | This is a static library containing prototypes and directives. |
 | strings_utilities.c | Cotains functions to compare strings, know the lengh of strings, copy the strings. |
 | utilities.c | Cotains functions to allocate the necesarry bytes in memory and break it free. |
+| printers | Contains functions that are helpful for printing error cases of permissions denied. |
 | man_1_simple_shell | This is our function manual v.0.0.1. |
 
 ## Compilate
