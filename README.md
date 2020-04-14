@@ -18,15 +18,13 @@
 | utilities.c | Cotains functions to allocate the necesarry bytes in memory and break it free. |
 | man_1_simple_shell | This is our function manual v.0.0.1. |
 
-## Compilate and run tests
-
-You can use any of the ```main.c``` found in the [test](./test) folder.
+## Compilate
 
 Files are compiled this way:
 
 ```
-$ gcc -Wall -Wno-format -Werror -Wextra -pedantic *.c
-$ ./a.out
+$ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
+$ ./hsh
 ```
 ## Examples
 ```
