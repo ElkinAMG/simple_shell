@@ -10,17 +10,15 @@
  * Return: It returns nothing.
  */
 
-void recognize_command(char *command, int counter, char *shell_name)
+int recognize_command(char *command, int counter, char *shell_name)
 {
 	int status, traveler;
 	char *av[1024] = {NULL};
 	char cmd[1024] = {'\0'};
 
 	if (!command || *command == '\n')
-		return;
+		return (0);
 
-	/*Travels through command parameter until*/
-	/*There are not spaces in it*/
 	for (; *command == ' ' || *command == '\t'; command++)
 		;
 
@@ -33,25 +31,23 @@ void recognize_command(char *command, int counter, char *shell_name)
 		av[traveler] = strtok(NULL, DELIMITER);
 
 	if (!(*av)) /* Check if the given command is NULL after the split */
-		return;
+		return (0);
+
+	if ((_strcmp(*av, "exit")) == 0)
+		return (1);
 
 	status = check_for_path(av, counter, shell_name);
 	if (status != 0)
 	{
 		if (status == 127)
-		{
 			_perror(shell_name, av[0], "not found\n", counter);
-			return;
-		}
 		if (status == -1)
-		{
 			_perror(shell_name, av[0], "has occured an error\n", counter);
-			return;
-		}
 		if (status == 126)
 			check_flag(2, shell_name, av[0], counter);
 	}
 
+	return (0);
 }
 
 /**

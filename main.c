@@ -51,12 +51,11 @@ int main(int ac, char **av)
 		if (bytes_read != EOF)
 		{
 			fflush(stdout); /* Frees garbage from the buffer. */
-			if (_strcmp(command, "exit\n") == 0)
+			if (recognize_command(command, counter, av[0]) != 0)
 			{
 				free(command);
 				exit(0);
 			}
-			recognize_command(command, counter, av[0]);
 			bytes_read = 0;
 			counter++;
 		}

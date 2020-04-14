@@ -52,7 +52,7 @@ void print_integer(int integer);
 void *_calloc(unsigned int nmemb, unsigned int size);
 
 /*COMMAND FINDERS*/
-void recognize_command(char *command, int counter, char *shell_name);
+int recognize_command(char *command, int counter, char *shell_name);
 int check_for_path(char **av, int counter, char *shell_name);
 void check_flag(int flag, char *shell_name, char *command, int counter);
 int find_fpth(char *command);
