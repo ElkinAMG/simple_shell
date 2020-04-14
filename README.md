@@ -1,6 +1,6 @@
 # SHELL PROJECT - A BASIC SHELL "RE-CREATION"
 
-!(img/giphy.gif)
+![](img/giphy.gif)
 
 ### Objectives
 - This project was developed for learning purpose.
