@@ -44,6 +44,7 @@ char *_memcpy(char *dest, char *src, unsigned int n);
 void _reverse(char *string);
 
 /*PRINTERS*/
+void envi(void);
 void _puts(char *string);
 void _perror(char *shell_name, char *command, char *msg, int counter);
 void print_integer(int integer);

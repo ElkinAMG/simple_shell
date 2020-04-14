@@ -32,22 +32,25 @@ int recognize_command(char *command, int counter, char *shell_name)
 
 	if (!(*av)) /* Check if the given command is NULL after the split */
 		return (0);
-
 	if ((_strcmp(*av, "exit")) == 0)
 		return (1);
+	if ((_strcmp(*av, "env")) == 0)
+	{
+		envi();
+		return (0);
+	}
 
 	status = check_for_path(av, counter, shell_name);
 	if (status != 0)
 	{
 		if (status == 127)
 			_perror(shell_name, av[0], "not found\n", counter);
-		if (status == -1)
+		else if (status == -1)
 			_perror(shell_name, av[0], "has occured an error\n", counter);
-		if (status == 126)
+		else if (status == 126)
 			check_flag(2, shell_name, av[0], counter);
 		return (127);
 	}
-
 	return (0);
 }
 

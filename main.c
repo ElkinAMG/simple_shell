@@ -68,3 +68,23 @@ int main(int ac, char **av)
 	free(command);
 	return (0);
 }
+
+/**
+ * envi - Built-in print environment
+ *
+ * Return: Nothing.
+ */
+
+void envi(void)
+{
+	char **ev;
+	int i = 0;
+
+	ev = environ;
+
+	for (; ev[i]; i++)
+	{
+		write(STDOUT_FILENO, ev[i], _strlen(ev[i]));
+		write(STDOUT_FILENO, "\n", 1);
+	}
+}
