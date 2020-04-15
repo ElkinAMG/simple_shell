@@ -67,7 +67,7 @@ dir *path_helper(void)
 
 	directory_num = 0;
 	path = _getenv("PATH");
-	if (*path == ':')
+	if (*path == ':' || *path == '\0')
 	{
 		div[directory_num++] = ".";
 	}
