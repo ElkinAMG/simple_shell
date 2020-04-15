@@ -17,7 +17,7 @@ int find_fpth(char *command)
 	{
 		if (stat(command, &st) == 0)
 		{
-			if ((st.st_mode & X_OK) && (st.st_mode & __S_IFREG))
+			if ((st.st_mode & __S_IFREG) && !access(command, X_OK))
 				return (0);
 			else
 				return (126);
@@ -108,14 +108,14 @@ int find_fname(char *command)
 				_strcat(directories->directory, command);
 				if ((stat(directories->directory, &st)) == 0)
 				{
-					if ((st.st_mode & X_OK) && (st.st_mode & __S_IFREG))
+					if (!access(directories->directory, X_OK) && (st.st_mode & __S_IFREG))
 					{
 						free_linked(directories);
 						return (0);
 					}
 					else
 					{
-						free(directories);
+						free_linked(directories);
 						return (126);
 					}
 				}
