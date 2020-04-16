@@ -12,16 +12,14 @@
 
 int recognize_command(char *command, int counter, char *shell_name)
 {
-	int status, traveler;
+	int status, traveler, rtrn = 0;
 	char *av[1024] = {NULL};
 	char cmd[1024] = {'\0'};
 
 	if (!command || *command == '\n')
 		return (0);
-
 	for (; *command == ' ' || *command == '\t'; command++)
 		;
-
 	_memcpy(cmd, command, _strlen(command));
 
 	traveler = 0;
@@ -44,14 +42,13 @@ int recognize_command(char *command, int counter, char *shell_name)
 	if (status != 0)
 	{
 		if (status == 127)
-			_perror(shell_name, av[0], "not found\n", counter);
+			check_flag(3, shell_name, av[0], counter), rtrn = 127;
 		else if (status == -1)
-			_perror(shell_name, av[0], "has occured an error\n", counter);
+			rtrn = 2;
 		else if (status == 126)
-			check_flag(2, shell_name, av[0], counter);
-		return (127);
+			check_flag(2, shell_name, av[0], counter), rtrn = 126;
 	}
-	return (0);
+	return (rtrn);
 }
 
 /**
@@ -74,7 +71,7 @@ int check_for_path(char **av, int counter, char *shell_name)
 	if (prcs != 0)
 	{
 		if (prcs == 126)
-			return (prcs); /* if prcs is equals to 2 the use do not have permissions. */
+			return (prcs);
 		prcs = find_fname(*av);
 		if (prcs != 0)
 			return (prcs);
@@ -98,7 +95,7 @@ int check_for_path(char **av, int counter, char *shell_name)
 		else
 		{
 			wait(&status);
-			if (status < 0)
+			if (WEXITSTATUS(status) != 0)
 				return (-1);
 			return (0);
 		}
@@ -122,11 +119,14 @@ void check_flag(int flag, char *shell_name, char *command, int counter)
 {
 	switch (flag)
 	{
-		case 1:
-			_perror(shell_name, command, "has occured an error\n", counter);
-			break;
-		case 2:
-			_perror(shell_name, command, "Permission denied\n", counter);
-			break;
+	case 1:
+		_perror(shell_name, command, "No such file or directory\n", counter);
+		break;
+	case 2:
+		_perror(shell_name, command, "Permission denied\n", counter);
+		break;
+	case 3:
+		_perror(shell_name, command, "not found\n", counter);
+		break;
 	}
 }

@@ -30,9 +30,7 @@ int main(int ac, char **av)
 	char *command = NULL;
 	size_t size = 0;
 	ssize_t bytes_read = 0;
-	int counter = 1;
-	int flag = 0;
-	int ext = 0;
+	int flag = 0, ext = 0, counter = 1;
 
 	signal(SIGINT, signalHandler);
 
