@@ -12,7 +12,7 @@ int find_fpth(char *command)
 {
 	struct stat st;
 
-	/* Checks whether the command starts with './' | '/' | '.' */
+	/* Checks if the command starts with './' || '/' || '.' */
 	if (ANALYZER(command[0], command[1]))
 	{
 		if (stat(command, &st) == 0)
@@ -22,12 +22,6 @@ int find_fpth(char *command)
 			else
 				return (126);
 		}
-	}
-
-	if ((command[0] == '/' || command[0] == '.') && stat(command, &st) == 0)
-	{
-		if (st.st_mode & __S_IFDIR)
-			return (126);
 	}
 
 	return (127);
@@ -42,12 +36,10 @@ int find_fpth(char *command)
 
 int exe_path(char **av)
 {
-	/* Check whether the command starts with ./ or / */
-	if (ANALYZER(av[0][0], av[0][1]))
-	{
-		if (execve(av[0], av, environ) != -1)
-			return (0);
-	}
+	/* Check if the command starts with ./ or / */
+	if (execve(av[0], av, environ) != -1)
+		return (0);
+
 	return (127);
 }
 
@@ -67,10 +59,12 @@ dir *path_helper(void)
 
 	directory_num = 0;
 	path = _getenv("PATH");
+
 	if (*path == ':' || *path == '\0')
 	{
 		div[directory_num++] = ".";
 	}
+
 	div[directory_num] = strtok(path, " :\n\t\r\0");
 
 	while (div[directory_num++] != NULL)
@@ -78,8 +72,6 @@ dir *path_helper(void)
 
 	for (iter = 0; iter < (directory_num - 1); iter++)
 		add_node_end(&directories_struct, div[iter]);
-
-	add_node_end(&directories_struct, ".");
 
 	free(path);
 	return (directories_struct);
@@ -104,7 +96,7 @@ int find_fname(char *command)
 		{
 			directories = path_helper();
 
-			while (directories != NULL)
+			while (directories)
 			{
 				_strcat(directories->directory, "/");
 				_strcat(directories->directory, command);
