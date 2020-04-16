@@ -17,6 +17,8 @@ extern char **environ;
 
 /* MACROS */
 #define DELIMITER " \t\r\n\a\""
+#define ANALYZER(pos1, pos2) ((pos1 == '.' && pos2 == '/') \
+		|| (pos1 == '/') || (pos1 == '.' && pos2 == '.'))
 
 /*STRUCTURE*/
 /**

@@ -13,7 +13,7 @@ int find_fpth(char *command)
 	struct stat st;
 
 	/* Checks whether the command starts with './' | '/' | '.' */
-	if ((command[0] == '.' && command[1] == '/') || (command[0] == '/'))
+	if (ANALYZER(command[0], command[1]))
 	{
 		if (stat(command, &st) == 0)
 		{
@@ -43,7 +43,7 @@ int find_fpth(char *command)
 int exe_path(char **av)
 {
 	/* Check whether the command starts with ./ or / */
-	if ((av[0][0] == '.' && av[0][1] == '/') || (av[0][0] == '/'))
+	if (ANALYZER(av[0][0], av[0][1]))
 	{
 		if (execve(av[0], av, environ) != -1)
 			return (0);
@@ -78,6 +78,8 @@ dir *path_helper(void)
 
 	for (iter = 0; iter < (directory_num - 1); iter++)
 		add_node_end(&directories_struct, div[iter]);
+
+	add_node_end(&directories_struct, ".");
 
 	free(path);
 	return (directories_struct);
