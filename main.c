@@ -64,7 +64,7 @@ int main(int ac, char **av)
 		counter++;
 	}
 	free(command);
-	return (0);
+	return (ext);
 }
 
 /**

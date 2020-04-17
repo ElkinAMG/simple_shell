@@ -13,8 +13,8 @@
 int recognize_command(char *command, int counter, char *shell_name)
 {
 	int status, traveler, rtrn = 0;
-	char *av[1024] = {NULL};
-	char cmd[1024] = {'\0'};
+	char *av[9216] = {NULL};
+	char cmd[9216] = {'\0'};
 
 	if (!command || *command == '\n')
 		return (0);
