@@ -17,7 +17,7 @@ int _builts(char *command, char *cmd, char *cmd2, int status)
 	int i;
 	built_ins built[] = {
 		{"exit", __exit},
-		{"envi", _env}
+		{"env", _env}
 	};
 
 	if (!command)
