@@ -1,4 +1,6 @@
-# SHELL PROJECT - A BASIC SHELL "RE-CREATION"<p align="center">
+# SHELL PROJECT - A BASIC SHELL "RE-CREATION"
+
+<p align="center">
 <img src="img/giphy.gif">
 </p>
 
