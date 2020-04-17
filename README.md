@@ -6,7 +6,8 @@
 - This project was developed for learning purpose.
 - Recreate a command interpreter. Shells are designed to facilitate the way in which the different programs available on the computer are invoked or executed.
 
-### Files Contained In The Project:| File | Description |
+### Files Contained In The Project:
+| File | Description |
 | ------ | ------ |
 | main.c | Contains the main function that execute the shell. |
 | find_commands.c | Contains functions to executes the given command. |
