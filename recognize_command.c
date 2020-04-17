@@ -4,22 +4,26 @@
  * recognize_command - It make the job of cut the command
  *                     and pass it to checker.
  * @command: The current command with its arguments.
+ * @ext: Exit Status for built-in.
  * @counter: Receives the current number that have the counter of commands.
  * @shell_name: Receives the current shell name.
  *
  * Return: It returns nothing.
  */
 
-int recognize_command(char *command, int counter, char *shell_name)
+int recognize_command(char *command, int ext, int counter, char *shell_name)
 {
 	int status, traveler, rtrn = 0;
 	char *av[1024] = {NULL};
-	char cmd[1024] = {'\0'};
+	char *cmd = NULL;
 
 	if (!command || *command == '\n')
 		return (0);
 	for (; *command == ' ' || *command == '\t'; command++)
 		;
+
+	cmd = _calloc((_strlen(command) + 1), sizeof(char));
+
 	_memcpy(cmd, command, _strlen(command));
 
 	traveler = 0;
@@ -28,17 +32,11 @@ int recognize_command(char *command, int counter, char *shell_name)
 	while (av[traveler++])
 		av[traveler] = strtok(NULL, DELIMITER);
 
-	if (!(*av)) /* Check if the given command is NULL after the split */
-		return (0);
-	if ((_strcmp(*av, "exit")) == 0)
-		return (1);
-	if ((_strcmp(*av, "env")) == 0)
-	{
-		envi();
-		return (0);
-	}
+	status =  _builts(av[0], command, cmd, ext); /*Looks for built-ins*/
 
-	status = check_for_path(av, counter, shell_name);
+	if (status != 0)
+		status = check_for_path(av, counter, shell_name); /*Looks for commands*/
+
 	if (status != 0)
 	{
 		if (status == 127)
@@ -48,6 +46,7 @@ int recognize_command(char *command, int counter, char *shell_name)
 		else if (status == 126)
 			check_flag(2, shell_name, av[0], counter), rtrn = 126;
 	}
+	free(cmd);
 	return (rtrn);
 }
 

@@ -50,39 +50,12 @@ int main(int ac, char **av)
 			break;
 
 		fflush(stdout); /* Frees garbage from the buffer. */
-		flag = recognize_command(command, counter, av[0]);
-		if (flag != 0)
-		{
-			if (flag == 1)
-				free(command), exit(ext);
-			else
-				ext = flag;
-		}
-		else
-			ext = 0;
+		flag = recognize_command(command, ext, counter, av[0]);
+
+		ext = flag;
 		bytes_read = 0;
 		counter++;
 	}
 	free(command);
 	return (ext);
-}
-
-/**
- * envi - Built-in print environment
- *
- * Return: Nothing.
- */
-
-void envi(void)
-{
-	char **ev;
-	int i = 0;
-
-	ev = environ;
-
-	for (; ev[i]; i++)
-	{
-		write(STDOUT_FILENO, ev[i], _strlen(ev[i]));
-		write(STDOUT_FILENO, "\n", 1);
-	}
 }

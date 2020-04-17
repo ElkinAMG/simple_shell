@@ -34,6 +34,17 @@ typedef struct directories
 	struct directories *next;
 
 } dir;
+/**
+ * struct built_in - It's a structure whose function
+ *                      is get built-ins.
+ * @b_in: Built-in name.
+ * @function: Function to active in truth case.
+ */
+typedef struct built_in
+{
+	char *b_in;
+	void (*function)();
+} built_ins;
 
 /*----PROTOTYPES----*/
 
@@ -45,6 +56,11 @@ int _strcmp(char *s1, char *s2);
 char *_memcpy(char *dest, char *src, unsigned int n);
 void _reverse(char *string);
 
+/*BUILT-INS*/
+int _builts(char *command, char *cmd, char *cmd2, int status);
+void __exit(char *command, char *command2, int status);
+void _env(void);
+
 /*PRINTERS*/
 void envi(void);
 void _puts(char *string);
@@ -55,7 +71,7 @@ void print_integer(int integer);
 void *_calloc(unsigned int nmemb, unsigned int size);
 
 /*COMMAND FINDERS*/
-int recognize_command(char *command, int counter, char *shell_name);
+int recognize_command(char *command, int ext, int counter, char *shell_name);
 int check_for_path(char **av, int counter, char *shell_name);
 void check_flag(int flag, char *shell_name, char *command, int counter);
 int find_fpth(char *command);
