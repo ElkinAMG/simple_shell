@@ -1,28 +1,23 @@
 # SHELL PROJECT - A BASIC SHELL "RE-CREATION"
-
-![](img/giphy.gif)
-
+<p align="center">
+<img src="img/giphy.gif">
+</p>
 ### Objectives
 - This project was developed for learning purpose.
 - Recreate a command interpreter. Shells are designed to facilitate the way in which the different programs available on the computer are invoked or executed.
-
-### files contained in the project:
-
+### Files Contained In The Project:
 | File | Description |
 | ------ | ------ |
-| main.c | contain the main function that excute the shell. |
-| find_commands.c | Contain functions to executes the given command. |
-| recognize_command.c | Cotain functions that cut the command and pass it to checker and print error when if exits. |
+| main.c | Contains the main function that execute the shell. |
+| find_commands.c | Contains functions to executes the given command. |
+| recognize_command.c | Cotains functions that cut the command and pass it to checker and print error when it does not exist. |
 | shell.h | This is a static library containing prototypes and directives. |
-| strings_utilities.c | Cotains functions to compare strings, know the lengh of strings, copy the strings. |
-| utilities.c | Cotains functions to allocate the necesarry bytes in memory and break it free. |
+| strings_utilities.c | Contains functions to compare strings, know the lengh of strings, copy the strings. |
+| utilities.c | Cotains functions to allocate the necesary bytes in memory and freeing it . |
 | printers | Contains functions that are helpful for printing error cases of permissions denied. |
-| man_1_simple_shell | This is our function manual v.0.0.1. |
-
+| man_1_simple_shell | This is our manual for covidShell v.0.0.1. |
 ## Compilate
-
 Files are compiled this way:
-
 ```
 $ gcc -Wall -Werror -Wextra -pedantic *.c -o hsh
 $ ./hsh
@@ -69,11 +64,10 @@ XDG_RUNTIME_DIR=/run/user/1000
 _=./a.out
 OLDPWD=/home/vagrant
 ```
-
 ### Authors
 - Yoyman Castellar - [Github](https://github.com/ymcastellar) , [Twitter](https://twitter.com/castellaryoyman).
 - Elkin Mejia - [Github](https://github.com/ElkinAMG) , [Twitter](https://twitter.com/ElkinAMG).
-
-![](img/jim.gif)
-
+<p align="center">
+<img src="img/jim.gif">
+</p>
 ###  End of README.md
