@@ -23,6 +23,12 @@ int find_fpth(char *command)
 				return (126);
 		}
 	}
+	/* Check if the file is in the current path */
+	if ((command[0] == '/' || command[0] == '.') && stat(command, &st) == 0)
+	{
+		if (st.st_mode & __S_IFDIR)
+			return (126);
+	}
 
 	return (127);
 }
@@ -37,9 +43,11 @@ int find_fpth(char *command)
 int exe_path(char **av)
 {
 	/* Check if the command starts with ./ or / */
-	if (execve(av[0], av, environ) != -1)
-		return (0);
-
+	if (ANALYZER(av[0][0], av[0][1]))
+	{
+		if (execve(av[0], av, environ) != -1)
+			return (0);
+	}
 	return (127);
 }
 
