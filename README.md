@@ -70,8 +70,8 @@ OLDPWD=/home/vagrant
 ```
 
 ### Authors
-- Yoyman Castellar - [Github]([https://github.com/ymcastellar](https://github.com/ymcastellar)) , [Twitter]([https://twitter.com/castellaryoyman](https://twitter.com/castellaryoyman)).  
-- Elkin Mejia - [Github]([https://github.com/ElkinAMG](https://github.com/ElkinAMG)) , [Twitter]([https://twitter.com/ElkinAMG](https://twitter.com/ElkinAMG)).
+- Yoyman Castellar - [Github](https://github.com/ymcastellar) , [Twitter](https://twitter.com/castellaryoyman).  
+- Elkin Mejia - [Github](https://github.com/ElkinAMG) , [Twitter](https://twitter.com/ElkinAMG).
 
 <p align="center">
 <img src="img/jim.gif">

@@ -23,12 +23,6 @@ int find_fpth(char *command)
 				return (126);
 		}
 	}
-	/* Check if the file is in the current path */
-	if ((command[0] == '/' || command[0] == '.') && stat(command, &st) == 0)
-	{
-		if (st.st_mode & __S_IFDIR)
-			return (126);
-	}
 
 	return (127);
 }
